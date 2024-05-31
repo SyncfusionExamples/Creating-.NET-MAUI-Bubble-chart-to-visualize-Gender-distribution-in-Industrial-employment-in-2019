@@ -1,0 +1,178 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chart="clr-namespace:Syncfusion.Maui.Charts;assembly=Syncfusion.Maui.Charts"
+             xmlns:local="clr-namespace:EmployementDistribution"
+             x:Class="EmployementDistribution.MainPage">
+
+    <ContentPage.BindingContext>
+        <local:EmploymentDistributionData/>
+    </ContentPage.BindingContext>
+
+    <Border StrokeThickness="4" Margin="20">
+        <Border.StrokeShape>
+            <RoundRectangle CornerRadius="10" />
+        </Border.StrokeShape>
+        <chart:SfCartesianChart x:Name="myChart">
+
+            <chart:SfCartesianChart.Title>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="{OnPlatform Android=49*,WinUI=59*,MacCatalyst=59*,iOS=49*}"/>
+                    </Grid.ColumnDefinitions>
+                    <VerticalStackLayout Background="#01BEFE" Margin="10,15,0,15" Grid.Column="0" Grid.RowSpan="2"/>
+                    <VerticalStackLayout Grid.Column="1" Margin="5">
+                        <Label Text="Comparative Analysis of Gender Representation in Industrial Employment in 2019" FontSize="{OnPlatform Android=14,WinUI=14,MacCatalyst=18,iOS=13}"  FontFamily="centurygothic" Padding="0,10,5,5" HorizontalTextAlignment="Start"/>
+                        <Label Text="This chart illustrates the gender distribution within the industrial sector in 2019, comparing the representation of female and male employees." HorizontalTextAlignment="Start" FontSize="{OnPlatform Android=10,WinUI=12,MacCatalyst=16,iOS=11}" FontFamily="centurygothic" TextColor="Grey" Padding="0,0,0,10"/>
+                    </VerticalStackLayout>
+                </Grid>
+            </chart:SfCartesianChart.Title>
+
+            <chart:SfCartesianChart.Resources>
+                <ResourceDictionary>
+                    <local:PopulationValueConver x:Key="populationValueConverter"/>
+                    <DataTemplate x:Key="template">
+                        <StackLayout>
+                            <Label Text="{Binding Item.Country}" HorizontalTextAlignment="Center" HorizontalOptions="Center" VerticalTextAlignment="Center" TextColor="White" FontAttributes="Bold" FontFamily="Helvetica" Margin="0,2,0,2" FontSize="12" Grid.Row="0" Padding="0,1"/>
+                            <BoxView Color="Gray" HeightRequest="1" HorizontalOptions="Fill" Margin="2,0,2,0"/>
+                            <Grid Padding="3">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Label Grid.Row="0" Text="{Binding Item.ShareOfFemale,StringFormat='% of Female Employment : {0}%'}" TextColor="white" FontFamily="Helvetica" FontSize="12"/>
+                                <Label Grid.Row="1" Text="{Binding Item.ShareOfMale,StringFormat='% of Male Employment     : {0}%'}" TextColor="white" FontFamily="Helvetica" FontSize="12"/>
+                                <Label Grid.Row="2" Text="{Binding Item.Population,Converter={StaticResource populationValueConverter},StringFormat='Population                         : {0}'}" TextColor="white" FontFamily="Helvetica" FontSize="12"/>
+                            </Grid>
+                        </StackLayout>
+                    </DataTemplate>
+                </ResourceDictionary>
+            </chart:SfCartesianChart.Resources>
+
+            <chart:SfCartesianChart.Legend>
+                <chart:ChartLegend ToggleSeriesVisibility="True"/>
+            </chart:SfCartesianChart.Legend>
+
+            <chart:SfCartesianChart.SelectionBehavior>
+                <chart:SeriesSelectionBehavior Type="Single" SelectionChanging="SeriesSelectionBehavior_SelectionChanging"/>
+            </chart:SfCartesianChart.SelectionBehavior>
+
+            <chart:SfCartesianChart.XAxes>
+                <chart:NumericalAxis EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="False">
+                    <chart:NumericalAxis.Title>
+                        <chart:ChartAxisTitle Text="% of Female labor force in Industrial Employment" FontSize="{OnPlatform Android=12,WinUI=13,MacCatalyst=14,iOS=10}"/>
+                    </chart:NumericalAxis.Title>
+                    <chart:NumericalAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle LabelFormat="0'%"/>
+                    </chart:NumericalAxis.LabelStyle>
+                    <chart:NumericalAxis.AxisLineStyle>
+                        <chart:ChartLineStyle StrokeWidth="0"/>
+                    </chart:NumericalAxis.AxisLineStyle>
+                    <chart:NumericalAxis.MajorTickStyle>
+                        <chart:ChartAxisTickStyle Stroke="#e6e6e6"/>
+                    </chart:NumericalAxis.MajorTickStyle>
+                </chart:NumericalAxis>
+            </chart:SfCartesianChart.XAxes>
+
+            <chart:SfCartesianChart.YAxes>
+                <chart:NumericalAxis EdgeLabelsDrawingMode="Fit" Interval="{OnPlatform Android=10,iOS=10,WinUI=5,MacCatalyst=5}">
+                    <chart:NumericalAxis.Title>
+                        <chart:ChartAxisTitle Text="% of Male labor force in Industrial Employment" FontSize="{OnPlatform Android=11,WinUI=13,MacCatalyst=14,iOS=10}"/>
+                    </chart:NumericalAxis.Title>
+                    <chart:NumericalAxis.LabelStyle>
+                        <chart:ChartAxisLabelStyle LabelFormat="0'%"/>
+                    </chart:NumericalAxis.LabelStyle>
+                    <chart:NumericalAxis.AxisLineStyle>
+                        <chart:ChartLineStyle StrokeWidth="0"/>
+                    </chart:NumericalAxis.AxisLineStyle>
+                    <chart:NumericalAxis.MajorTickStyle>
+                        <chart:ChartAxisTickStyle Stroke="#e6e6e6"/>
+                    </chart:NumericalAxis.MajorTickStyle>
+                </chart:NumericalAxis>
+            </chart:SfCartesianChart.YAxes>
+
+            <chart:SfCartesianChart.Series>
+
+                <!--Asian Countries Series-->
+                <chart:BubbleSeries ItemsSource="{Binding Asia}"
+                                    XBindingPath="ShareOfFemale"
+                                    YBindingPath="ShareOfMale"
+                                    SizeValuePath="Population"
+                                    EnableTooltip="True"
+                                    Label="Asia"
+                                    Fill="#01BEFE"
+                                    TooltipTemplate="{StaticResource template}"
+                                    MinimumRadius="{OnPlatform Default=5,Android=3,iOS=3}"
+                                    MaximumRadius="{OnPlatform Default=15,Android=10,iOS=10}"/>
+
+                <!--African Countries Series-->
+                <chart:BubbleSeries ItemsSource="{Binding Africa}"
+                                    XBindingPath="ShareOfFemale"
+                                    YBindingPath="ShareOfMale"
+                                    SizeValuePath="Population"
+                                    EnableTooltip="True"
+                                    Label="Africa"
+                                    Fill="#FFDD00"
+                                    TooltipTemplate="{StaticResource template}"
+                                    MinimumRadius="{OnPlatform Default=5,Android=3,iOS=3}"
+                                    MaximumRadius="{OnPlatform Default=15,Android=10,iOS=10}"/>
+
+                <!--European Countries Series-->
+                <chart:BubbleSeries ItemsSource="{Binding Europe}"
+                                    XBindingPath="ShareOfFemale"
+                                    YBindingPath="ShareOfMale"
+                                    SizeValuePath="Population"
+                                    EnableTooltip="True"
+                                    Label="Europe"
+                                    Fill="#FF7D00"
+                                    TooltipTemplate="{StaticResource template}"
+                                    MinimumRadius="{OnPlatform Default=5,Android=3,iOS=3}"
+                                    MaximumRadius="{OnPlatform Default=15,Android=10,iOS=10}"/>
+
+                <!--SouthAmerican Countries Series-->
+                <chart:BubbleSeries ItemsSource="{Binding SouthAmerica}"
+                                    XBindingPath="ShareOfFemale"
+                                    YBindingPath="ShareOfMale"
+                                    SizeValuePath="Population"
+                                    EnableTooltip="True"
+                                    Label="South America"
+                                    Fill="#FF006D"
+                                    TooltipTemplate="{StaticResource template}"
+                                    MinimumRadius="{OnPlatform Default=5,Android=3,iOS=3}"
+                                    MaximumRadius="{OnPlatform Default=15,Android=10,iOS=10}"/>
+
+                <!--NorthAmerican Countries Series-->
+                <chart:BubbleSeries ItemsSource="{Binding NorthAmerica}"
+                                    XBindingPath="ShareOfFemale"
+                                    YBindingPath="ShareOfMale"
+                                    SizeValuePath="Population"
+                                    EnableTooltip="True"
+                                    Label="North America"
+                                    Fill="#ADFF02"
+                                    TooltipTemplate="{StaticResource template}"
+                                    MinimumRadius="{OnPlatform Default=5,Android=3,iOS=3}"
+                                    MaximumRadius="{OnPlatform Default=15,Android=10,iOS=10}"/>
+                
+                <!--Oceania Countries Series-->
+                <chart:BubbleSeries ItemsSource="{Binding Oceania}"
+                                    XBindingPath="ShareOfFemale"
+                                    YBindingPath="ShareOfMale"
+                                    SizeValuePath="Population"
+                                    EnableTooltip="True"
+                                    Label="Oceania"
+                                    Fill="#8F00FF"
+                                    TooltipTemplate="{StaticResource template}"
+                                    MinimumRadius="{OnPlatform Default=5,Android=3,iOS=3}"
+                                    MaximumRadius="{OnPlatform Default=15,Android=10,iOS=10}"/>
+
+            </chart:SfCartesianChart.Series>
+
+
+        </chart:SfCartesianChart>
+    </Border>
+
+    
+
+</ContentPage>
