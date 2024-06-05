@@ -62,7 +62,7 @@
             <chart:SfCartesianChart.XAxes>
                 <chart:NumericalAxis EdgeLabelsDrawingMode="Shift" ShowMajorGridLines="False">
                     <chart:NumericalAxis.Title>
-                        <chart:ChartAxisTitle Text="% of Female labor force in Industrial Employment" FontSize="{OnPlatform Android=12,WinUI=13,MacCatalyst=14,iOS=10}"/>
+                        <chart:ChartAxisTitle Text="% of Female Labor Force in Industrial Employment" FontSize="{OnPlatform Android=12,WinUI=13,MacCatalyst=14,iOS=10}"/>
                     </chart:NumericalAxis.Title>
                     <chart:NumericalAxis.LabelStyle>
                         <chart:ChartAxisLabelStyle LabelFormat="0'%"/>
@@ -79,7 +79,7 @@
             <chart:SfCartesianChart.YAxes>
                 <chart:NumericalAxis EdgeLabelsDrawingMode="Fit" Interval="{OnPlatform Android=10,iOS=10,WinUI=5,MacCatalyst=5}">
                     <chart:NumericalAxis.Title>
-                        <chart:ChartAxisTitle Text="% of Male labor force in Industrial Employment" FontSize="{OnPlatform Android=11,WinUI=13,MacCatalyst=14,iOS=10}"/>
+                        <chart:ChartAxisTitle Text="% of Male Labor Force in Industrial Employment" FontSize="{OnPlatform Android=11,WinUI=13,MacCatalyst=14,iOS=10}"/>
                     </chart:NumericalAxis.Title>
                     <chart:NumericalAxis.LabelStyle>
                         <chart:ChartAxisLabelStyle LabelFormat="0'%"/>
