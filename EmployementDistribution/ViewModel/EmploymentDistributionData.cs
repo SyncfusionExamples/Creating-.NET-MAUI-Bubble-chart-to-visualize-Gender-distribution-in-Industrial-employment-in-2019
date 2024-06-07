@@ -4,97 +4,19 @@ namespace EmployementDistribution
 {
     public class EmploymentDistributionData
     {
-        List<EmploymentDistributionModel> allCountriesdata;
+        public List<EmploymentDistributionModel> AllCountriesData { get; set; }
 
-        public List<EmploymentDistributionModel> AllCountriesData
-        {
-            get
-            {
-                return allCountriesdata;
-            }
-            set
-            {
-                allCountriesdata = value;
-            }
-        }
+        public List<EmploymentDistributionModel> Asia { get; set; }
 
-        List<EmploymentDistributionModel> asia;
-        public List<EmploymentDistributionModel> Asia
-        {
-            get
-            {
-                return asia;
-            }
-            set
-            {
-                asia = value;
-            }
-        }
+        public List<EmploymentDistributionModel> Africa { get; set; }
 
-        List<EmploymentDistributionModel> africa;
-        public List<EmploymentDistributionModel> Africa
-        {
-            get
-            {
-                return africa;
-            }
-            set
-            {
-                africa = value;
-            }
-        }
+        public List<EmploymentDistributionModel> SouthAmerica { get; set; }
 
-        List<EmploymentDistributionModel> southAmerica;
-        public List<EmploymentDistributionModel> SouthAmerica
-        {
-            get
-            {
-                return southAmerica;
-            }
-            set
-            {
-                southAmerica = value;
-            }
-        }
+        public List<EmploymentDistributionModel> NorthAmerica { get; set; }
 
-        List<EmploymentDistributionModel> northAmerica;
-        public List<EmploymentDistributionModel> NorthAmerica
-        {
-            get
-            {
-                return northAmerica;
-            }
-            set
-            {
-                northAmerica = value;
-            }
-        }
+        public List<EmploymentDistributionModel> Oceania { get; set; }
 
-        List<EmploymentDistributionModel> oceania;
-        public List<EmploymentDistributionModel> Oceania
-        {
-            get
-            {
-                return oceania;
-            }
-            set
-            {
-                oceania = value;
-            }
-        }
-
-        List<EmploymentDistributionModel> europe;
-        public List<EmploymentDistributionModel> Europe
-        {
-            get
-            {
-                return europe;
-            }
-            set
-            {
-                europe = value;
-            }
-        }
+        public List<EmploymentDistributionModel> Europe { get; set; }
 
         public EmploymentDistributionData()
         {
