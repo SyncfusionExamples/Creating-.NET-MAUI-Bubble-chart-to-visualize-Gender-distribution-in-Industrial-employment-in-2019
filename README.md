@@ -21,4 +21,4 @@ The .NET MAUI SfCartesianChart supports selection that allows you to select a se
 ### Path too long exception
 If you are facing a path too long exception when building this example project, close Visual Studio and rename the repository to a shorter name and build the project.
 
-For the step by step procedure, refer to the [Gender Distribution in Industrial Employment Blog]().
+For the step by step procedure, refer to the [Gender Distribution in Industrial Employment Blog](https://www.syncfusion.com/blogs/post/dotnetmaui-bubble-chart-gender-parity).
